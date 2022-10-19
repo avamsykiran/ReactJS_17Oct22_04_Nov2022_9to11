@@ -192,3 +192,21 @@ state
 
     'setState' is a emthod from React.Component
 
+bootstrap integration with reactjs
+-------------------------------------------------------------------
+
+    npm install bootstrap --save
+
+    import bootstrap.min.css and bootstrap.min.js from 'node_modules/bootstrap/dist/css' and 'node_modules/bootstrap/dist/js' respectively in index.js file.
+
+ReactJS Forms
+--------------------------------------------------------------------
+
+    Controlled Component belive in 'single source of truth' meaning
+    that the form elements and the state are tightly associated
+    to exchange data.
+
+    <input  value={this.state.field} />
+
+    to receive the data we will have to handle the onChange of the text box
+    and call the setState method there.
