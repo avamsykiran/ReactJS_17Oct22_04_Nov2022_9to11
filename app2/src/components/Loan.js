@@ -18,8 +18,10 @@ class Loan extends Component {
 
     render() {
 
-        let simpleInterest = this.state.loanAmount*this.state.roi*this.state.terms/100;
-        let payableAmount = simpleInterest+this.state.loanAmount;
+        let {loanAmount,roi,terms} = this.state;
+
+        let simpleInterest = loanAmount*roi*terms/100;
+        let payableAmount = simpleInterest+loanAmount;
 
         return (
             <div className='container-fluid p-4'>
@@ -43,15 +45,15 @@ class Loan extends Component {
                     </div>
                     <div className='row'>
                         <div className='col'>
-                            <input type="number" name="loanAmount" value={this.state.loanAmount}
+                            <input type="number" name="loanAmount" value={loanAmount}
                                 onChange={this.updateData} className="form-control" />
                         </div>
                         <div className='col'>
-                            <input type="number" name="roi" value={this.state.roi}
+                            <input type="number" name="roi" value={roi}
                                 onChange={this.updateData} className="form-control" />
                         </div>
                         <div className='col'>
-                            <input type="number" name="terms" value={this.state.terms}
+                            <input type="number" name="terms" value={terms}
                                 onChange={this.updateData} className="form-control" />
                         </div>
                         <div className='col'>

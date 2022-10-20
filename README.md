@@ -192,6 +192,8 @@ state
 
     'setState' is a emthod from React.Component
 
+    'setState()' method should not be invoked from 'render()'.
+
 bootstrap integration with reactjs
 -------------------------------------------------------------------
 
@@ -210,3 +212,4 @@ ReactJS Forms
 
     to receive the data we will have to handle the onChange of the text box
     and call the setState method there.
+
