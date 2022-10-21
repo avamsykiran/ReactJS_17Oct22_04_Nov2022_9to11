@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import InputItemRow from './InputItemRow';
+import ItemRow from './ItemRow';
 
 class Inventory extends Component {
     constructor() {
@@ -17,9 +19,17 @@ class Inventory extends Component {
         }
     }
 
+    markEditable = id => {
+        this.setState({ items: this.state.items.map(t => t.id == id ? { ...t, editable: true } : t) });
+    };
+
+    unMarkEditable = id => {
+        this.setState({ items: this.state.items.map(t => t.id == id ? { ...t, editable: undefined } : t) });
+    };
+
     render() {
         return (
-            <div className='col-sm-10 mx-auto'>
+            <div className='col mx-auto'>
                 <h4>Inventory</h4>
 
                 <table className='table table-bordered table-striped'>
@@ -34,18 +44,11 @@ class Inventory extends Component {
                         </tr>
                     </thead>
                     <tbody>
+                        <InputItemRow />
                         {this.state.items.map(t => (
-                            <tr key={t.id}>
-                                <td className='text-end'>{t.id}</td>
-                                <td>{t.name}</td>
-                                <td className='text-end'>{t.rate}</td>
-                                <td className='text-end'>{t.stock}</td>
-                                <td>{t.unit}</td>
-                                <td className='text-center'>
-                                    <button className='btn btn-sm btn-primary me-2'>EDIT</button>
-                                    <button className='btn btn-sm btn-danger'>DELETE</button>
-                                </td>
-                            </tr>
+                            t.editable ?
+                                <InputItemRow Key={t.id} item={t} unMarkEditable={this.unMarkEditable}/> :
+                                <ItemRow Key={t.id} item={t} markEditable={this.markEditable} />
                         ))}
                     </tbody>
                 </table>
