@@ -213,3 +213,53 @@ ReactJS Forms
     to receive the data we will have to handle the onChange of the text box
     and call the setState method there.
 
+Assignment
+-------------------------------------------------------------------
+    Design a CRUD SPA using ReactJS on the employee entity 
+    having empId,fullName,basicPay,mobile and mailId as properties.
+
+React Class Component LifeCycle Methods
+-------------------------------------------------------------------
+
+    constructor()                           state initialization and props injections
+        render()                            return the html DOM
+            componentDidMount()             to perform any task after the first rendering...
+
+                /** setState is called in componentDidMount or in any other
+                 event handler **/
+
+                    render()                update the screen DOM accordingly
+                     componentDidUpdate()   to perform any task after the each rendering...
+                                            sideeffects are handled here....
+
+
+                    componentWillUnMount()  is called just before the component is destroyed
+                    componentDidCatch()     is used by the debugger to report errors on a componnet.
+
+React Hooks
+-------------------------------------------------------------------
+
+    are special methods offered to give 
+    functional components capabilities equivalent to class components
+
+    useState(initalValue)       
+        returns an array of a getter and a setter
+        getter is used to retirve the value of the field
+        setter is used to set the value of the field
+        and every time the setter is called, rendering happens.
+
+            let [x,setX] = useState(0);
+            let [welcome,setWelcome] = useState("Hello");
+            let [emp,setEmp] = useState({empId:1,fullName:'Vamsy',salary:45000});
+
+    useEffect(callBack,dependencyArray)
+
+        useEffect(callBack) 
+            dependencyArray can be null, the callback is executed once after each rendering
+        
+        useEffect(callBack,[]) 
+            dependencyArray can be empty, the callback is executed after the first rendering (equivalent to componentDidMount)
+
+        useEffect(callBack,[x,welcome]) 
+            dependencyArray can have fields, the callback is executed after each rendering and if
+            the dependent values are changed. (Equivalent to componentDidUpdate conditionally)

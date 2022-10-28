@@ -57,7 +57,7 @@ class Inventory extends Component {
                 {this.state.items.map(t => (
                     t.editable ?
                         <InputItemRow Key={t.id} item={t} unMarkEditable={this.unMarkEditable} update={this.updateItem} /> :
-                        <ItemRow Key={t.id} item={t} markEditable={this.markEditable} delete={this.deleteItem} />
+                        <ItemRow Key={t.id} item={t} markEditable={this.markEditable} remove={this.deleteItem} />
                 ))}
 
             </div>
