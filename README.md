@@ -263,3 +263,65 @@ React Hooks
         useEffect(callBack,[x,welcome]) 
             dependencyArray can have fields, the callback is executed after each rendering and if
             the dependent values are changed. (Equivalent to componentDidUpdate conditionally)
+
+State Management using Redux
+--------------------------------------------------------------------------------
+
+    Redux offers Centralized State Management.
+
+        this potentially avoids teh components to manage or share data and that increases
+        the isolation of the components which inturn makes the app more maintainable and dynamic.
+
+
+        npm install redux react-redux --save
+
+        redux
+            store           is a place where the entire state of the app is maintained.
+                            one react app will have one and only store.
+                            'createStore' method from 'redux' moduel sued to create a store.
+
+                            const myStore = createStore(myReducer);
+
+            reducer         is a pure javascript function that has
+                                oldState,action as paramaeters and
+                                modifiedState is returned
+
+                            const myReducer = (oldState,action) => {
+                                /*operation on initialState as per the given action */
+
+                                return modifedState;
+                            };
+
+            action          is a json object having payload and type as properties.
+                            'type' indicates what operation has to be done on the state
+                            'payload' hold the data needed to execute the operation.
+
+                            { type:'DELETE',empId:101}
+                            { type:'ADD', emp:{empId:110,name:'Vamsy',sal:45000}}
+                            { type:'UPDATE',emp:{empId:110,name:'Vamsy Kiran',sal:85000}}
+
+            dispatch        is a in-built function from 'redux' module used
+                            by a component to send action to the reducer.
+
+                            let addAction = { type:'ADD', emp:{empId:110,name:'Vamsy',sal:45000}};
+                            dispatch(addAction);
+                            
+        react-redux
+            Provider            is a component from react-reduc used to wrap the store
+                                on our top-level component.
+
+                                root.render(
+                                    <React.StrictMode>
+                                        <Provider store={myStore}> 
+                                            <App />
+                                        </Provider>
+                                    </React.StrictMode>
+                                );
+
+            useSelector hook    is used to retrive data from store into a component.
+
+                useSelector( globalState => { /*retrive what part of the state we need*/ });
+
+            useDispatch hook    is used to inject dispatch method and invoke it to launch an action.
+
+                useDispatch( dispatch => { /*receive the dispatch and use it when needed*/ });
