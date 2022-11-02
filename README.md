@@ -272,7 +272,6 @@ State Management using Redux
         this potentially avoids teh components to manage or share data and that increases
         the isolation of the components which inturn makes the app more maintainable and dynamic.
 
-
         npm install redux react-redux --save
 
         redux
@@ -325,3 +324,24 @@ State Management using Redux
             useDispatch hook    is used to inject dispatch method and invoke it to launch an action.
 
                 useDispatch( dispatch => { /*receive the dispatch and use it when needed*/ });
+
+
+            store  →-----------------------------------------------------
+            ↑                                          |               |
+            |                                          | state         | state
+            |                                          ↓               ↓ 
+            |                                          | useSelector   | useSelector
+            |                                          | extract       | extract
+            |                                          | requried      | required 
+            |                                          | data from     | data from
+            |                                          | state         |
+            |                                          ↓               ↓ 
+            |                                      Component1      Component2
+            |                                          |               |
+            |                                          | useDispatch   | useDispatch
+            | modified state                           | gives         | gives
+            |                                          | dispatch      | dispatch
+            |                                          |               |
+            |------reducer ←-------- dispatch(action)-←|               |
+                           ←-------- dispatch(action)-----------------←|  
+
