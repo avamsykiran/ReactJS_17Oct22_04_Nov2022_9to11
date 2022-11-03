@@ -325,7 +325,6 @@ State Management using Redux
 
                 useDispatch( dispatch => { /*receive the dispatch and use it when needed*/ });
 
-
             store  →-----------------------------------------------------
             ↑                                          |               |
             |                                          | state         | state
@@ -342,6 +341,80 @@ State Management using Redux
             | modified state                           | gives         | gives
             |                                          | dispatch      | dispatch
             |                                          |               |
-            |------reducer ←-------- dispatch(action)-←|               |
+            |←-----reducer ←-------- dispatch(action)-←|               |
                            ←-------- dispatch(action)-----------------←|  
 
+json-server
+----------------------------------------------------------------------------------------------
+    is a tool used to generate fake rest-api jsut for learning purpose.
+
+    depends on a .json file for data and creates rest-api to perorm CRUD operations on that data.
+
+    md rest-api
+    cd rest-api
+    npm init -y
+    npm install json-server --save
+
+    rest-api/package.json
+        |-scripts
+            "start":"json-server --port 7777 --watch ./data.json"
+
+    rest-api/data.json
+        add hypothetical data.
+
+    npm start
+
+axios 
+------------------------------------------------------------------------------
+
+    mpm install axios --save
+    
+    axios offers method to send request to a rest-api
+
+        axios.
+                get("url")
+                post("url",{json:Object})
+                put("url",{json:Object})
+                delete("url")
+
+    each of these method returbn a Promsie. 
+    a Promsie object has then(toReciveData) and a catch(receiveError)
+
+redux-thunk 
+------------------------------------------------------------------------------
+
+    redux-thunk is a thunk library used to apply any asynchronous middleware operation
+    in redux state management.
+
+    thunk?      is a function that returns another function.
+
+    in redux-thunk, action can be an object or action can be a function.
+
+    
+            store  →-----------------------------------------------------
+            ↑                                          |               |
+            |                                          | state         | state
+            |                                          ↓               ↓ 
+            |                                          | useSelector   | useSelector
+            |                                          | extract       | extract
+            |                                          | requried      | required 
+            |                                          | data from     | data from
+            |                                          | state         |
+            |                                          ↓               ↓ 
+            |                                      Component1      Component2
+            |                                          |               |
+            |                                          | useDispatch   | useDispatch
+            | modified state                           | gives         | gives
+            |                                          | dispatch      | dispatch
+            |                                          |               |
+            |                |←-- dispatch(actionObj)-←|               |
+            |←-----reducer ←-|               dispatch(actionFunction)-←|
+                             |                              |
+                             |                              |
+                             |                             |---------------------------------|
+                             |←-- dispatch(waitActionObj)-←|  1. inform the comp to wait     |
+                             |                             |  2. raise a axios req           |
+                             |←-- dispatch(dataActionObj)-←|  3. recieve data                | 
+                             |                             |         or                      |
+                             |←-- dispatch(errActionObj)--←|    receive error                |
+                                                           |---------------------------------|

@@ -1,0 +1,11 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Rice",
+      "unit": "50Kg Bag",
+      "stock": 345,
+      "rate": 2455
+    }
+  ]
+}
